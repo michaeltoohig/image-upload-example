@@ -8,7 +8,7 @@ from .utils.equals import EqualsUUIDString
 def test_api(client):
     resp = client.get("/api")
     assert resp.status_code == 200
-    assert json.loads(resp.data) == {"message": "Hello"}
+    assert json.loads(resp.data) == {"message": "Hello World!"}
 
 
 @pytest.mark.usefixtures("db_session")

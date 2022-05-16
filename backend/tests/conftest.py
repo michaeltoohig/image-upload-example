@@ -6,7 +6,7 @@ import sqlalchemy as sa
 
 from app.core.create_app import create_app
 from app.extensions import db
-from app.models import FlashCard, User
+from app.models import User
 
 
 # Retrieve a database connection string from the shell environment
@@ -85,8 +85,8 @@ def _db(app):
 def user_factory(app, db_session):
     """Return a function to create a ``User``."""
 
-    def factory(username: str) -> User:
-        user = User(username=username)
+    def factory(username: str, email: str) -> User:
+        user = User(username=username, email=email)
         db.session.add(user)
         db.session.commit()
         return user
@@ -97,23 +97,4 @@ def user_factory(app, db_session):
 @pytest.fixture()
 def user(user_factory):
     """Return a ``User``."""
-    return user_factory("test")
-
-
-@pytest.fixture()
-def flashcard_factory(app, db_session, user):
-    """Return a function to create a ``FlashCard``."""
-
-    def factory(word: str, definition: str, user: User, bin: int = 0) -> FlashCard:
-        fc = FlashCard(word=word, definition=definition, user_id=user.id, bin=bin)
-        db.session.add(fc)
-        db.session.commit()
-        return fc
-
-    return factory
-
-
-@pytest.fixture()
-def flashcard(flashcard_factory, user):
-    """Return a ``FlashCard``."""
-    return flashcard_factory("word", "definition", user)
+    return user_factory("test", "test@test.test")

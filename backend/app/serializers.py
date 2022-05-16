@@ -34,6 +34,14 @@ class UserSchema(WrapDataSchema):
     username = fields.Str(required=True)
     email = fields.Email(required=True)
 
+
+class UniqueUserSchema(UserSchema):
+    """Adds unique field validation for create/update endpoints.
+    example:
+        schema = UniqueUserSchema()
+        schema.context["user_id"] = id
+        user_data = schema.load(user_data)
+    """
     @validates_schema
     def validate_unique_fields(self, data: JSON, partial: bool, many: bool) -> None:
         """Valdiate username and email to make sure they are unique."""

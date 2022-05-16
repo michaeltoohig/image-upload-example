@@ -5,7 +5,7 @@ from app.utils.types import JSON
 from app.extensions import db
 
 from app.models import User
-from app.serializers import UserSchema
+from app.serializers import UniqueUserSchema, UserSchema
 
 
 blueprint = Blueprint(
@@ -29,7 +29,7 @@ def user_get(id: str):
 
 
 @blueprint.route("/", methods=["POST"])
-@blueprint.arguments(UserSchema())
+@blueprint.arguments(UniqueUserSchema())
 @blueprint.response(201, UserSchema())
 def user_create(user_data: JSON):
     user = User(**user_data)
@@ -46,6 +46,10 @@ def user_update(user_data: JSON, id: str):
     if not user:
         abort(404, message="User not found.")
 
+    # check user data is unique
+    schema = UniqueUserSchema()
+    schema.context["user"] = user
+    user_data = schema.load(user_data)
     # Assign validated attributes to the model.
     for attr, value in user_data.items():
         setattr(user, attr, value)
