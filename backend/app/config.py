@@ -18,6 +18,9 @@ class Config:
     API_VERSION = "0.1"
     OPENAPI_VERSION = "3.0.2"
 
+    # local files
+    LOCAL_IMAGE_DIRECTORY = "_local_data"
+
 
 class LocalConfig(Config):
     # Flask's general settings

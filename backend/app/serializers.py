@@ -53,3 +53,8 @@ class UniqueUserSchema(UserSchema):
         validate_unique_field("username", username, id)
         email = data.get("email")
         validate_unique_field("email", email, id)
+
+
+class ImageUploadSchema(WrapDataSchema):
+    # username = fields.Str(required=True)
+    file = fields.Raw(required=True, type='file')

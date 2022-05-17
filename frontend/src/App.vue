@@ -2,8 +2,11 @@
   <v-app>
     <v-main>
       <v-app-bar>
-        <v-toolbar-title>Flask Vue Starter</v-toolbar-title>
+        <v-toolbar-title>Demo App</v-toolbar-title>
         <v-spacer></v-spacer>
+        <router-link :to="{ name: 'upload' }" exact>
+          <v-btn icon><v-icon>mdi-upload</v-icon></v-btn>
+        </router-link>
         <router-link :to="{ name: 'home' }" exact>
           <v-btn icon><v-icon>mdi-home</v-icon></v-btn>
         </router-link>

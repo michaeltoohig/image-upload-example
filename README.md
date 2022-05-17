@@ -1,8 +1,14 @@
+# Note to Athelas
+
+This is repo based on [this repo](https://github.com/serebrov/flask-vue-starter) with some of my structural changes and a completely new frontend. I wanted to use this starter since it used Flask which I like (but now using FastAPI for work) and I know Flask was recommended in the pre-interview email. Also chose to try this starter repo because it uses a light framework on top of Flask using Marshmallow schemas which closly matches something [I did last year](https://github.com/michaeltoohig/flask-webargs-marshmallow-schemas). So, I thought I would be familiar enough with the underlying packages to work with it for the interview. Second reason was this starter gave me a quick starting point for Docker integration so I wouldn't have to implement that all myself before the interview. But in the end I found that the clever Docker config was not playing nicely with my PC probably because I'm running WSL which periodically does have issues with Docker. So I don't recommend this starter.
+
+Before uploading an image you have to create a user with username "Test". That was a part of the interview that became a hardcoded value while debugging.
+
 # Flask (with Smorest) + Vue.js Starter
 
-Starter example app: Flask (SQLAlchemy, PostgreSQL) + Vue.js (Typescript), docker setup for backend and frontend.
+Starter example app: Flask (SQLAlchemy, PostgreSQL) + Vue.js, docker setup for backend and frontend.
 
-Backend is powered by Flask, flask-rest-api, marshmallow and SQLAlchemy to create a solid framework for REST API backend development:
+Backend is powered by Flask, Flask-Smorest and SQLAlchemy to create a solid framework for REST API backend development:
 
 - Application structure
 - Routing
@@ -26,7 +32,7 @@ Frontend setup:
 - [axios](https://github.com/axios/axios) for HTTP requests
 - [vuetify](https://vuetifyjs.com) for UI
 - Testing with [jest](https://jestjs.io/)
-- Linting with typescript, eslint and prettier
+- Linting with eslint and prettier
 - Code formatting with airbnb style
 
 Note: on linux, to fix permissions between host / docker shared containers, it is necessary to export `$UID` and `$GID` variables, this can be done in ~/.bashrc or ~/.zshrc.

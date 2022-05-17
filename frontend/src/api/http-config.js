@@ -44,9 +44,9 @@ export default {
     Vue.prototype.$http = axios.create({
       baseURL: this.endpoint,
       timeout: this.timeout,
-      headers: {
-        'Content-Type': 'application/json',
-      },
+      // headers: {
+      //   'Content-Type': 'application/json',
+      // },
     });
     Vue.prototype.$http.interceptors.request.use(this.requestInterceptor);
     Vue.prototype.$http.interceptors.response.use(

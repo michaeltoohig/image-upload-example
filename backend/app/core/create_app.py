@@ -12,8 +12,10 @@ from .cli import register_cli_handlers
 
 def register_api(app: Flask) -> None:
     """Register blueprints and routes."""
+    from app.endpoints.images import blueprint as image_blueprint
     from app.endpoints.users import blueprint as user_blueprint
 
+    api.register_blueprint(image_blueprint)
     api.register_blueprint(user_blueprint)
 
     @app.route("/api")
